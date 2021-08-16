@@ -1,15 +1,15 @@
 const jokeEl = document.getElementById('joke'),
   jokeBtn = document.getElementById('jokeBtn');
 
-const generateJoke = () => {
+const generateJoke = async() => {
   const config = {
     headers: {
       'Accept': 'application/json'
     }
   };
-  fetch('https://icanhazdadjoke.com', config)
-    .then(res => res.json())
-    .then((data) => jokeEl.innerHTML = data.joke);
+  const data = await fetch('https://icanhazdadjoke.com', config)
+   const res = await data.json();
+  jokeEl.innerHTML = res.joke;
 }
 
 generateJoke();
