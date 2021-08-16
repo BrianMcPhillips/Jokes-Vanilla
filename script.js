@@ -1,8 +1,6 @@
 const jokeEl = document.getElementById('joke'),
   jokeBtn = document.getElementById('jokeBtn');
 
-generateJoke();
-
 const generateJoke = () => {
   const config = {
     headers: {
@@ -11,5 +9,11 @@ const generateJoke = () => {
   };
   fetch('https://icanhazdadjoke.com', config)
     .then(res => res.json())
-    .then((data) => console.log(data));
+    .then((data) => jokeEl.innerHTML = data.joke);
 }
+
+generateJoke();
+
+jokeBtn.addEventListener('click', () => {
+  generateJoke();
+})
